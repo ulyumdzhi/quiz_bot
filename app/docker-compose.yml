@@ -1,0 +1,34 @@
+version: "3"
+services:
+  bot: 
+    build: .
+    ports: 
+      - 8000:8000
+    # environment: 
+    #   - DB_PATH=data/users.db
+    networks:
+      bot:
+        ipv4_address: 172.19.0.44
+    volumes:
+      - ../volumes/config_folder:/config:ro 
+      - ../volumes/log_folder:/log:rw
+      - ../volumes/data_base_folder:/data:rw
+
+      # syntax: -/localmachine/path/to/folder:/dockercontainer/path:ro 
+
+      # where 'ro' - means 'read only'
+      #       'rw' - means 'read and write' accsess
+      
+
+networks:
+  bot:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/24
+
+volumes:
+  config:
+  log:
+  data:
