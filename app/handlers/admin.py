@@ -64,9 +64,5 @@ async def admin_tasks(message: types.Message):
 
     for admin in admin_id_list:
         await bot.send_photo(admin, 
-                             photo=open(screenshot_name, 'rb')) 
-        
-        await bot.send_message(admin, f'*{user_name}* send answer!', 
-                               parse_mode='Markdown',
-                               disable_web_page_preview=True)
-    
+                             photo=open(screenshot_name, 'rb'),
+                             caption=f'*{user_name}* send answer!') 
