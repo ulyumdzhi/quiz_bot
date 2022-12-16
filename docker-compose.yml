@@ -1,7 +1,7 @@
 version: "3"
 services:
   bot: 
-    build: .
+    build: app/
     ports: 
       - 8000:8000
     # environment: 
@@ -12,7 +12,7 @@ services:
     volumes:
       - ../volumes/config_folder:/config:ro 
       - ../volumes/log_folder:/log:rw
-      - ../volumes/data_base_folder:/data:rw
+      - ../volumes/data_folder:/data:rw
 
       # syntax: -/localmachine/path/to/folder:/dockercontainer/path:ro 
 

@@ -1,9 +1,9 @@
 import os
-# import asyncio
 import logging
 
 from aiogram import executor
 from handlers.dp import dp
+
 
 logging.basicConfig(level=logging.INFO, 
                     filename='./log/log.log')

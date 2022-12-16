@@ -1,14 +1,11 @@
 import logging
-from aiogram import types
 
+from aiogram import types
 from bot.dispatcher import bot, dp
 
 from codewars.task import Task
-
-from config.admins import admin_id_list  # works in container after docker-compose up --build
-
 from handlers.start import users_id
-
+from config.admins import admin_id_list  # works in container after docker-compose up --build
 
 
 @dp.message_handler(content_types=['text'])
@@ -46,11 +43,9 @@ async def admin_tasks(message: types.Message):
                                    disable_web_page_preview=True)
             
 
-    
-    
 
 @dp.message_handler(content_types=['photo'])
-async def admin_tasks(message: types.Message):
+async def task_anwers(message: types.Message):
     
     if message.media_group_id is None:
         ### Get user's variables

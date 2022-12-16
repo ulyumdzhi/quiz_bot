@@ -1,4 +1,5 @@
 import logging
+import re
 import urllib.request
 
 
@@ -6,7 +7,10 @@ class Task:
 
     def __init__(self, url: str):
         self.url = url
-        self.name = self.parse_kata_name(self.url)
+    
+    @property
+    def name(self):
+        return self.parse_kata_name(self.url)
     
     @staticmethod
     def codewars_checker(url: str):
@@ -18,10 +22,11 @@ class Task:
             try:
                 with urllib.request.urlopen(url) as f:
                     content = f.read().decode('utf-8')
+                    
+                REG = '<h4[^>]*>([^<]*)<\/h4>'
 
-                idx = content.index('<h4 ')
-                name = content[idx:idx+1000].split('>')[1][:-4].strip()  # yes, it's a magic!
-            
+                name = re.search(REG, content).group(1)
+                            
                 logging.info(name)
                 
                 return name
@@ -36,4 +41,8 @@ class Task:
 
 
 
+url = 'https://www.codewars.com/kata/514b92a657cdc65150000006'
+task = Task(url)
 
+
+print(task)

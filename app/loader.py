@@ -8,10 +8,12 @@ logging.basicConfig(level=logging.INFO)
 
 # set username of system
 os_username = 'user'
+
 try:
     os_username = os.environ['USER']
-except:
-    pass
+except Exception as e:
+    print(e)
+
 
 print(f'🫶  Hello, {os_username}!')
 
